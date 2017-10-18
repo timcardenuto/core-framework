@@ -497,7 +497,7 @@ namespace  bulkio {
     SCOPED_LOCK lock(updatingPortsLock);   // restrict access till method completes
     typename OutPortSriMap::iterator cSri = currentSRIs.begin();
     for ( ; cSri != currentSRIs.end(); cSri++ ) {
-      ret[cSri->first] = std::make_pair<  BULKIO::StreamSRI, bool >( cSri->second.sri, false );
+      ret[cSri->first] = std::make_pair( cSri->second.sri, false );
     }
     return ret;
   }

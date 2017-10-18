@@ -28,7 +28,7 @@ class CppTestDevice_i : public CppTestDevice_base
 {
     ENABLE_LOGGING
     public:
-		static const float MAX_LOAD = 4.0;
+		static constexpr float MAX_LOAD = 4.0;
 
 		CppTestDevice_i(char *devMgr_ior, char *id, char *lbl, char *sftwrPrfl);
         CppTestDevice_i(char *devMgr_ior, char *id, char *lbl, char *sftwrPrfl, char *compDev);
