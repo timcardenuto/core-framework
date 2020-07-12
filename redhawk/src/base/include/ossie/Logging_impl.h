@@ -57,10 +57,10 @@ class Logging_impl
   void         log_level( const CF::LogLevel newLevel );
 
   // override this method to accept logging configuration information as a string
-  void         setLogLevel( const char *logger_id, const CF::LogLevel newLevel ) throw (CF::UnknownIdentifier);
+  void         setLogLevel( const char *logger_id, const CF::LogLevel newLevel );
 
   // override this method to accept logging configuration information as a string
-  CF::LogLevel getLogLevel( const char *logger_id ) throw (CF::UnknownIdentifier);
+  CF::LogLevel getLogLevel( const char *logger_id );
 
   // retrieves the list of named loggers associated with the logger
   CF::StringSequence* getNamedLoggers();

@@ -20,7 +20,7 @@ bin_PROGRAMS = src
 
 xmldir = $(prefix)/dom/components/src
 dist_xml_DATA = ../src.scd.xml ../src.prf.xml ../src.spd.xml
-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
+ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie -I /usr/local/share/aclocal
 AUTOMAKE_OPTIONS = subdir-objects
 
 distclean-local:

@@ -203,17 +203,17 @@ PortableServer::ObjectId* Application_impl::Activate(Application_impl* applicati
     return oid._retn();
 }
 
-char* Application_impl::identifier () throw (CORBA::SystemException)
+char* Application_impl::identifier () 
 {
     return CORBA::string_dup(_identifier.c_str());
 }
 
-CORBA::Boolean Application_impl::started () throw (CORBA::SystemException)
+CORBA::Boolean Application_impl::started () 
 {
     return this->_started;
 }
 
-void Application_impl::setLogLevel( const char *logger_id, const CF::LogLevel newLevel ) throw (CF::UnknownIdentifier)
+void Application_impl::setLogLevel( const char *logger_id, const CF::LogLevel newLevel ) 
 {
     BOOST_FOREACH(redhawk::ApplicationComponent component, _components) {
         if (not component.isRegistered() or not component.isVisible())
@@ -228,7 +228,7 @@ void Application_impl::setLogLevel( const char *logger_id, const CF::LogLevel ne
     throw (CF::UnknownIdentifier());
 }
 
-CF::LogLevel Application_impl::getLogLevel( const char *logger_id ) throw (CF::UnknownIdentifier)
+CF::LogLevel Application_impl::getLogLevel( const char *logger_id ) 
 {
     BOOST_FOREACH(redhawk::ApplicationComponent component, _components) {
         if (not component.isRegistered() or not component.isVisible())
@@ -268,8 +268,7 @@ void Application_impl::resetLog()
     }
 }
 
-void Application_impl::start ()
-throw (CORBA::SystemException, CF::Resource::StartError)
+void Application_impl::start () 
 {
     // Make sure releaseObject hasn't already been called
     {
@@ -312,8 +311,7 @@ throw (CORBA::SystemException, CF::Resource::StartError)
     }
 }
 
-void Application_impl::stop ()
-throw (CORBA::SystemException, CF::Resource::StopError)
+void Application_impl::stop () 
 {
     // Make sure releaseObject hasn't already been called
     {
@@ -327,8 +325,7 @@ throw (CORBA::SystemException, CF::Resource::StopError)
     this->local_stop(this->_stopTimeout);
 }
 
-void Application_impl::local_stop (float timeout)
-throw (CORBA::SystemException, CF::Resource::StopError)
+void Application_impl::local_stop (float timeout) 
 {
     if (!_assemblyController && _startOrder.empty()) {
         throw CF::Resource::StopError(CF::CF_ENOTSUP, "No assembly controller and no Components with startorder set");
@@ -368,16 +365,15 @@ throw (CORBA::SystemException, CF::Resource::StopError)
     }
 }
 
-CORBA::Float Application_impl::stopTimeout () throw (CORBA::SystemException) {
+CORBA::Float Application_impl::stopTimeout ()  {
     return this->_stopTimeout;
 }
 
-void Application_impl::stopTimeout (CORBA::Float timeout) throw (CORBA::SystemException) {
+void Application_impl::stopTimeout (CORBA::Float timeout)  {
     this->_stopTimeout = timeout;
 }
 
-void Application_impl::initializeProperties (const CF::Properties& configProperties)
-throw (CF::PropertySet::PartialConfiguration, CF::PropertySet::InvalidConfiguration, CORBA::SystemException)
+void Application_impl::initializeProperties (const CF::Properties& configProperties) 
 {
     // Make sure releaseObject hasn't already been called
     {
@@ -390,8 +386,7 @@ throw (CF::PropertySet::PartialConfiguration, CF::PropertySet::InvalidConfigurat
     }
 }
 
-void Application_impl::configure (const CF::Properties& configProperties)
-throw (CF::PropertySet::PartialConfiguration, CF::PropertySet::InvalidConfiguration, CORBA::SystemException)
+void Application_impl::configure (const CF::Properties& configProperties) 
 {
     redhawk::PropertyMap invalidProperties;
 
@@ -456,10 +451,10 @@ throw (CF::PropertySet::PartialConfiguration, CF::PropertySet::InvalidConfigurat
             comp != batch.end(); ++comp) {
         try {
             comp->second.first->configure(comp->second.second);
-        } catch (CF::PropertySet::InvalidConfiguration e) {
+        } catch (const CF::PropertySet::InvalidConfiguration &e) {
             // Add invalid properties to return list
             invalidProperties.extend(e.invalidProperties);
-        } catch (CF::PropertySet::PartialConfiguration e) {
+        } catch (const CF::PropertySet::PartialConfiguration &e) {
             // Add invalid properties to return list
             invalidProperties.extend(e.invalidProperties);
         }
@@ -476,8 +471,7 @@ throw (CF::PropertySet::PartialConfiguration, CF::PropertySet::InvalidConfigurat
 }
 
 
-void Application_impl::query (CF::Properties& configProperties)
-throw (CF::UnknownProperties, CORBA::SystemException)
+void Application_impl::query (CF::Properties& configProperties) 
 {
     redhawk::PropertyMap invalidProperties;
 
@@ -544,7 +538,7 @@ throw (CF::UnknownProperties, CORBA::SystemException)
                     configProperties[count].id = CORBA::string_dup(extId.c_str());
                     configProperties[count].value = comp->second.second[i].value;
                 }
-            } catch (CF::UnknownProperties e) {
+            } catch (const CF::UnknownProperties &e) {
                 invalidProperties.extend(e.invalidProperties);
             }
         }
@@ -554,7 +548,7 @@ throw (CF::UnknownProperties, CORBA::SystemException)
         try {
             CF::Resource_var ac_resource = _assemblyController->getResourcePtr();
             ac_resource->query(tempProp);
-        } catch (CF::UnknownProperties e) {
+        } catch (const CF::UnknownProperties &e) {
             for (unsigned int i = 0; i < e.invalidProperties.length(); ++i) {
                 RH_ERROR(_baseLog, "Invalid assembly controller property name: " << e.invalidProperties[i].id);
             }
@@ -641,7 +635,7 @@ throw (CF::UnknownProperties, CORBA::SystemException)
                 comp != batch.end(); ++comp) {
             try {
                 comp->second.first->query(comp->second.second);
-            } catch (CF::UnknownProperties e) {
+            } catch (const CF::UnknownProperties &e) {
                 invalidProperties.extend(e.invalidProperties);
             }
         }
@@ -683,8 +677,7 @@ throw (CF::UnknownProperties, CORBA::SystemException)
 }
 
 
-char *Application_impl::registerPropertyListener( CORBA::Object_ptr listener, const CF::StringSequence &prop_ids, const CORBA::Float interval)
-  throw(CF::UnknownProperties, CF::InvalidObjectReference)
+char *Application_impl::registerPropertyListener( CORBA::Object_ptr listener, const CF::StringSequence &prop_ids, const CORBA::Float interval) 
 {
 
   SCOPED_LOCK( releaseObjectLock );
@@ -751,8 +744,7 @@ char *Application_impl::registerPropertyListener( CORBA::Object_ptr listener, co
   return CORBA::string_dup(regid.c_str() );
 }
 
-void Application_impl::unregisterPropertyListener( const char *reg_id ) 
-  throw (CF::InvalidIdentifier)
+void Application_impl::unregisterPropertyListener( const char *reg_id )  
 {
   SCOPED_LOCK( releaseObjectLock );
   if (_releaseAlreadyCalled) {
@@ -786,8 +778,7 @@ void Application_impl::unregisterPropertyListener( const char *reg_id )
 
 }
 
-void Application_impl::initialize ()
-throw (CORBA::SystemException, CF::LifeCycle::InitializeError)
+void Application_impl::initialize () 
 {
     // Make sure releaseObject hasn't already been called
     {
@@ -814,8 +805,7 @@ throw (CORBA::SystemException, CF::LifeCycle::InitializeError)
 }
 
 
-CORBA::Object_ptr Application_impl::getPort (const char* _id)
-throw (CORBA::SystemException, CF::PortSupplier::UnknownPort)
+CORBA::Object_ptr Application_impl::getPort (const char* _id) 
 {
     SCOPED_LOCK( releaseObjectLock );
     if (_releaseAlreadyCalled) {
@@ -905,9 +895,7 @@ CF::PortSet::PortInfoSequence* Application_impl::getPortSet ()
 }
 
 
-void Application_impl::runTest (CORBA::ULong _testId, CF::Properties& _props)
-throw (CORBA::SystemException, CF::UnknownProperties, CF::TestableObject::UnknownTest)
-
+void Application_impl::runTest (CORBA::ULong _testId, CF::Properties& _props) 
 {
     // Make sure releaseObject hasn't already been called
     {
@@ -947,8 +935,7 @@ throw (CORBA::SystemException, CF::UnknownProperties, CF::TestableObject::Unknow
 }
 
 
-void Application_impl::releaseObject ()
-throw (CORBA::SystemException, CF::LifeCycle::ReleaseError)
+void Application_impl::releaseObject () 
 {
   try {
     // Make sure releaseObject hasn't already been called, but only hold the
@@ -970,7 +957,7 @@ throw (CORBA::SystemException, CF::LifeCycle::ReleaseError)
     // remove application from DomainManager's App Sequence
     try {
         _domainManager->removeApplication(_identifier);
-    } catch (CF::DomainManager::ApplicationUninstallationError& ex) {
+    } catch (const CF::DomainManager::ApplicationUninstallationError &ex) {
         RH_ERROR(_baseLog, ex.msg);
     }
 
@@ -1165,33 +1152,28 @@ void Application_impl::_cleanupActivations()
     app_poa->deactivate_object(oid);
 }
 
-char* Application_impl::name ()
-throw (CORBA::SystemException)
+char* Application_impl::name () 
 {
     return CORBA::string_dup(_appName.c_str());
 }
 
-bool Application_impl::aware ()
-throw (CORBA::SystemException)
+bool Application_impl::aware () 
 {
     return _isAware;
 }
 
 
-char* Application_impl::profile ()
-throw (CORBA::SystemException)
+char* Application_impl::profile () 
 {
     return CORBA::string_dup(_sadProfile.c_str());
 }
 
-char* Application_impl::softwareProfile ()
-throw (CORBA::SystemException)
+char* Application_impl::softwareProfile () 
 {
     return CORBA::string_dup(_sadProfile.c_str());
 }
 
-CF::Application::ComponentProcessIdSequence* Application_impl::componentProcessIds ()
-throw (CORBA::SystemException)
+CF::Application::ComponentProcessIdSequence* Application_impl::componentProcessIds () 
 {
     CF::Application::ComponentProcessIdSequence_var result = new CF::Application::ComponentProcessIdSequence();
     // Make sure releaseObject hasn't already been called
@@ -1233,8 +1215,7 @@ bool Application_impl::haveAttribute(std::vector<std::string> &atts, std::string
     return true;
 }
 
-CF::Properties* Application_impl::metrics(const CF::StringSequence& components, const CF::StringSequence& attributes)
-throw (CF::Application::InvalidMetric, CORBA::SystemException)
+CF::Properties* Application_impl::metrics(const CF::StringSequence& components, const CF::StringSequence& attributes) 
 {
     CF::Properties_var result_ugly = new CF::Properties();
     // Make sure releaseObject hasn't already been called
@@ -1468,8 +1449,7 @@ CF::ApplicationRegistrar_ptr Application_impl::appReg (void)
     return _registrar->_this();
 }
 
-CF::Application::ComponentElementSequence* Application_impl::componentNamingContexts ()
-throw (CORBA::SystemException)
+CF::Application::ComponentElementSequence* Application_impl::componentNamingContexts () 
 {
     CF::Application::ComponentElementSequence_var result = new CF::Application::ComponentElementSequence();
     // Make sure releaseObject hasn't already been called
@@ -1488,8 +1468,7 @@ throw (CORBA::SystemException)
 }
 
 
-CF::Application::ComponentElementSequence* Application_impl::componentImplementations ()
-throw (CORBA::SystemException)
+CF::Application::ComponentElementSequence* Application_impl::componentImplementations () 
 {
     CF::Application::ComponentElementSequence_var result = new CF::Application::ComponentElementSequence();
     // Make sure releaseObject hasn't already been called
@@ -1506,8 +1485,7 @@ throw (CORBA::SystemException)
 }
 
 
-CF::DeviceAssignmentSequence* Application_impl::componentDevices ()
-throw (CORBA::SystemException)
+CF::DeviceAssignmentSequence* Application_impl::componentDevices () 
 {
     CF::DeviceAssignmentSequence_var result = new CF::DeviceAssignmentSequence();
     // Make sure releaseObject hasn't already been called

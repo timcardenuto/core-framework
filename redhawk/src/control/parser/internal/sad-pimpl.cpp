@@ -111,10 +111,10 @@ namespace sad
       _sad->name = name;
   }
 
-  ::std::auto_ptr<ossie::SoftwareAssembly::SAD> softwareassembly_pimpl::
+  ::std::unique_ptr<ossie::SoftwareAssembly::SAD> softwareassembly_pimpl::
   post_softwareassembly ()
   {
-      return _sad;
+      return std::move(_sad);
   }
 
   // componentfiles_pimpl

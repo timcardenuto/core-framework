@@ -329,8 +329,7 @@ namespace  redhawk {
         Return list of cpus either associated with a node (i.e. processor socket), or 
         from properly formatted string support by numa library parse methods
      */
-    CpuList get_cpu_list( const std::string &list_type,  const std::string &context )
-      throw (AffinityFailed)
+    CpuList get_cpu_list( const std::string &list_type,  const std::string &context ) 
     {
       CpuList cpu_list;
       if ( is_disabled() ) {
@@ -461,8 +460,7 @@ namespace  redhawk {
     }
 
 
-    AffinityDirectives convert_properties(const CF::Properties& options ) 
-      throw (AffinityFailed)
+    AffinityDirectives convert_properties(const CF::Properties& options )   
     {
       AffinityDirectives spec;
 
@@ -539,8 +537,7 @@ namespace  redhawk {
        Translates the CF::Properties to a affinity directives, then call set_affinity with this dictionary
 
      */
-    int set_affinity( const CF::Properties& options, const pid_t pid, const CpuList &blacklist ) 
-      throw (AffinityFailed)
+    int set_affinity( const CF::Properties& options, const pid_t pid, const CpuList &blacklist )  
     {
       AffinityDirectives spec;
 
@@ -553,8 +550,7 @@ namespace  redhawk {
       return set_affinity(spec, pid, blacklist );
     }
 
-    int set_affinity( const AffinityDirectives &spec, const pid_t pid, const CpuList &blacklist) 
-      throw (AffinityFailed)
+    int set_affinity( const AffinityDirectives &spec, const pid_t pid, const CpuList &blacklist)  
     {
 
       if ( is_disabled() ) {

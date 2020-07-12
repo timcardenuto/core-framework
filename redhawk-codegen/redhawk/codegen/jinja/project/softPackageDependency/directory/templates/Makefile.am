@@ -18,7 +18,7 @@
 # You should have received a copy of the GNU Lesser General Public License
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 #}
-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
+ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie -I /usr/local/share/aclocal
 AUTOMAKE_OPTIONS = subdir-objects
 
 xmldir = $(prefix)/{{component.sdrpath}}/{{component.name}}{{generator.variant}}/

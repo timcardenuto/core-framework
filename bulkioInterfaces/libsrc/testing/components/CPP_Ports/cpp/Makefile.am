@@ -23,7 +23,7 @@ bin_PROGRAMS = CPP_Ports
 
 xmldir = $(prefix)/dom/components/CPP_Ports
 dist_xml_DATA = ../CPP_Ports.scd.xml ../CPP_Ports.prf.xml ../CPP_Ports.spd.xml
-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
+ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie -I /usr/local/share/aclocal
 AUTOMAKE_OPTIONS = subdir-objects
 
 distclean-local:

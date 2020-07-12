@@ -23,7 +23,7 @@ bin_PROGRAMS = sri_changed_cpp
 
 xmldir = $(prefix)/dom/components/sri_changed_cpp
 dist_xml_DATA = ../sri_changed_cpp.scd.xml ../sri_changed_cpp.prf.xml ../sri_changed_cpp.spd.xml
-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
+ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie -I /usr/local/share/aclocal
 AUTOMAKE_OPTIONS = subdir-objects
 
 distclean-local:

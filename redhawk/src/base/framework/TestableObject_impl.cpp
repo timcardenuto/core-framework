@@ -22,8 +22,6 @@
 #include "ossie/TestableObject_impl.h"
 
 void
-TestableObject_impl::runTest (CORBA::ULong _number, CF::Properties& _props)
-throw (CORBA::SystemException, CF::TestableObject::UnknownTest,
-       CF::UnknownProperties)
+TestableObject_impl::runTest (CORBA::ULong _number, CF::Properties& _props) 
 {
 }

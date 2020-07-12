@@ -23,7 +23,7 @@ bin_PROGRAMS = TestLargePush
 
 xmldir = $(prefix)/dom/components/TestLargePush
 dist_xml_DATA = ../TestLargePush.scd.xml ../TestLargePush.prf.xml ../TestLargePush.spd.xml
-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
+ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie -I /usr/local/share/aclocal
 AUTOMAKE_OPTIONS = subdir-objects
 
 distclean-local:

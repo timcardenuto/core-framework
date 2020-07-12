@@ -880,11 +880,7 @@ void createHelper::setUpExternalProperties(redhawk::ApplicationDeployment& appDe
 CF::Application_ptr ApplicationFactory_impl::create (
     const char* name,
     const CF::Properties& initConfiguration,
-    const CF::DeviceAssignmentSequence& deviceAssignments)
-throw (CORBA::SystemException, CF::ApplicationFactory::CreateApplicationError,
-        CF::ApplicationFactory::CreateApplicationRequestError,
-        CF::ApplicationFactory::CreateApplicationInsufficientCapacityError,
-        CF::ApplicationFactory::InvalidInitConfiguration)
+    const CF::DeviceAssignmentSequence& deviceAssignments) 
 {
     RH_TRACE(_appFactoryLog, "Creating application " << name);
 
@@ -1919,7 +1915,7 @@ void createHelper::loadAndExecuteContainers(const ContainerList& containers,
             std::ostringstream message;
             message << "container " << container->getIdentifier() << " was assigned to non-loadable device "
                     << device->identifier;
-            RH_ERROR(_createHelperLog, message);
+            //RH_ERROR(_createHelperLog, message);
             throw std::logic_error(message.str());
         }
 
@@ -1987,7 +1983,7 @@ void createHelper::loadAndExecuteComponents(const DeploymentList& deployments,
             std::ostringstream message;
             message << "component " << component_id << " was assigned to non-loadable device "
                     << device->identifier;
-            RH_ERROR(_createHelperLog, message);
+            //RH_ERROR(_createHelperLog, message);
             throw std::logic_error(message.str());
         }
 

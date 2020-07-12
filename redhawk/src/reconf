@@ -21,7 +21,7 @@
 
 
 libtoolize --force --automake
-aclocal -I acinclude
+aclocal -I acinclude -I /usr/local/share/aclocal
 rm -f config.cache
 autoconf -f
 automake --foreign --add-missing

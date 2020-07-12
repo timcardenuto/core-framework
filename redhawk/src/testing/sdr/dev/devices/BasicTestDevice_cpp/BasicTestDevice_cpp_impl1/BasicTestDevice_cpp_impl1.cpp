@@ -61,8 +61,7 @@ void BasicTestDevice_cpp_impl1_i::initResource(char *devMgr_ior, char *id, char 
 BasicTestDevice_cpp_impl1_i::~BasicTestDevice_cpp_impl1_i() {
 };
 
-CORBA::Boolean BasicTestDevice_cpp_impl1_i::allocateCapacity (const CF::Properties & capacities)
-    throw (CORBA::SystemException, CF::Device::InvalidCapacity, CF::Device::InvalidState) 
+CORBA::Boolean BasicTestDevice_cpp_impl1_i::allocateCapacity (const CF::Properties & capacities) 
 {
     
     bool response = true;
@@ -92,8 +91,7 @@ CORBA::Boolean BasicTestDevice_cpp_impl1_i::allocateCapacity (const CF::Properti
     return true;
 }
 
-void BasicTestDevice_cpp_impl1_i::deallocateCapacity (const CF::Properties & capacities)
-    throw (CORBA::SystemException, CF::Device::InvalidCapacity, CF::Device::InvalidState) 
+void BasicTestDevice_cpp_impl1_i::deallocateCapacity (const CF::Properties & capacities)    
 {
 
     std::string tmp;

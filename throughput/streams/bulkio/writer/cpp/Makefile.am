@@ -23,7 +23,7 @@ lib_LTLIBRARIES = writer.la
 
 xmldir = $(prefix)/dom/components/writer
 dist_xml_DATA = ../writer.scd.xml ../writer.prf.xml ../writer.spd.xml
-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
+ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie -I /usr/local/share/aclocal
 AUTOMAKE_OPTIONS = subdir-objects
 
 .PHONY: convenience-link clean-convenience-link

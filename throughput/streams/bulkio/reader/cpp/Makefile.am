@@ -23,7 +23,7 @@ lib_LTLIBRARIES = reader.la
 
 xmldir = $(prefix)/dom/components/reader
 dist_xml_DATA = ../reader.scd.xml ../reader.prf.xml ../reader.spd.xml
-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
+ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie -I /usr/local/share/aclocal
 AUTOMAKE_OPTIONS = subdir-objects
 
 .PHONY: convenience-link clean-convenience-link

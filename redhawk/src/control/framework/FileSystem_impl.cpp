@@ -152,7 +152,7 @@ FileSystem_impl::~FileSystem_impl ()
 {
 }
 
-void FileSystem_impl::remove (const char* fileName) throw (CF::FileException, CF::InvalidFileName, CORBA::SystemException)
+void FileSystem_impl::remove (const char* fileName) 
 {
     boost::mutex::scoped_lock lock(interfaceAccess);
     
@@ -187,7 +187,7 @@ void FileSystem_impl::remove (const char* fileName) throw (CF::FileException, CF
     }
 }
 
-void FileSystem_impl::move (const char* sourceFileName, const char* destinationFileName) throw (CORBA::SystemException, CF::InvalidFileName, CF::FileException)
+void FileSystem_impl::move (const char* sourceFileName, const char* destinationFileName) 
 {
     boost::mutex::scoped_lock lock(interfaceAccess);
 
@@ -223,7 +223,7 @@ void FileSystem_impl::move (const char* sourceFileName, const char* destinationF
     }
 }
 
-void FileSystem_impl::copy (const char* sourceFileName, const char* destinationFileName) throw (CORBA::SystemException, CF::InvalidFileName, CF::FileException)
+void FileSystem_impl::copy (const char* sourceFileName, const char* destinationFileName) 
 {
     boost::mutex::scoped_lock lock(interfaceAccess);
 
@@ -257,8 +257,7 @@ void FileSystem_impl::copy (const char* sourceFileName, const char* destinationF
     fsops.copy_file(sourcePath, destPath, fs::copy_option::overwrite_if_exists);
 }
 
-CORBA::Boolean FileSystem_impl::exists (const char* fileName)
-throw (CORBA::SystemException, CF::InvalidFileName)
+CORBA::Boolean FileSystem_impl::exists (const char* fileName) 
 {
     boost::mutex::scoped_lock lock(interfaceAccess);
 
@@ -285,7 +284,7 @@ bool FileSystem_impl::_local_exists (const char* fileName)
     }
 }
 
-CF::FileSystem::FileInformationSequence* FileSystem_impl::list (const char* pattern) throw (CORBA::SystemException, CF::FileException, CF::InvalidFileName)
+CF::FileSystem::FileInformationSequence* FileSystem_impl::list (const char* pattern) 
 {
     fs::path filePath(root / pattern);
     fs::path dirPath(filePath.parent_path());
@@ -357,7 +356,7 @@ CF::FileSystem::FileInformationSequence* FileSystem_impl::list (const char* patt
 }
 
 
-CF::File_ptr FileSystem_impl::create (const char* fileName) throw (CORBA::SystemException, CF::InvalidFileName, CF::FileException)
+CF::File_ptr FileSystem_impl::create (const char* fileName) 
 {
     if (!ossie::isValidFileName(fileName)) {
         throw CF::InvalidFileName (CF::CF_EINVAL, "Invalid file name");
@@ -439,7 +438,7 @@ std::vector< std::string > FileSystem_impl::getFileIOR(const std::string& fileNa
     return retVal;
 }
 
-CF::File_ptr FileSystem_impl::open (const char* fileName, CORBA::Boolean read_Only) throw (CORBA::SystemException, CF::InvalidFileName, CF::FileException)
+CF::File_ptr FileSystem_impl::open (const char* fileName, CORBA::Boolean read_Only) 
 {
     if (!ossie::isValidFileName(fileName)) {
         throw CF::InvalidFileName(CF::CF_EINVAL, "Invalid file name");
@@ -463,7 +462,7 @@ CF::File_ptr FileSystem_impl::open (const char* fileName, CORBA::Boolean read_On
 }
 
 
-void FileSystem_impl::mkdir (const char* directoryName) throw (CORBA::SystemException, CF::FileException, CF::InvalidFileName)
+void FileSystem_impl::mkdir (const char* directoryName) 
 {
     if (!ossie::isValidFileName(directoryName)) {
         throw CF::InvalidFileName(CF::CF_EINVAL, "Invalid file name");
@@ -503,7 +502,7 @@ void FileSystem_impl::removeDirectory(const fs::path& dirPath, bool doRemove)
     }
 }
 
-void FileSystem_impl::rmdir (const char* directoryName) throw (CORBA::SystemException, CF::FileException, CF::InvalidFileName)
+void FileSystem_impl::rmdir (const char* directoryName) 
 {
     if (!ossie::isValidFileName(directoryName)) {
         throw CF::InvalidFileName(CF::CF_EINVAL, "Invalid directory name");
@@ -524,7 +523,7 @@ void FileSystem_impl::rmdir (const char* directoryName) throw (CORBA::SystemExce
 }
 
 
-void FileSystem_impl::query (CF::Properties& fileSysProperties) throw (CORBA::SystemException, CF::FileSystem::UnknownFileSystemProperties)
+void FileSystem_impl::query (CF::Properties& fileSysProperties) 
 {
     if (fileSysProperties.length () == 0) {
         RH_TRACE(_fileSysLog, "Query all properties (SIZE, AVAILABLE_SPACE)");

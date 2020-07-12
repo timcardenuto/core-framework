@@ -483,7 +483,7 @@ namespace frontend {
 
     template < typename TunerStatusStructType >
     CORBA::Boolean FrontendTunerDevice<TunerStatusStructType>::allocateCapacity(const CF::Properties & capacities)
-    throw (CORBA::SystemException, CF::Device::InvalidCapacity, CF::Device::InvalidState) {
+     {
         if (this->tuner_allocation_ids.size() != this->frontend_tuner_status.size()) {
             this->tuner_allocation_ids.resize(this->frontend_tuner_status.size());
         }
@@ -740,14 +740,14 @@ namespace frontend {
         
     template < typename TunerStatusStructType >
     void FrontendTunerDevice<TunerStatusStructType>::deallocateCapacity(const CF::Properties & capacities)
-    throw (CORBA::SystemException, CF::Device::InvalidCapacity, CF::Device::InvalidState) {
+     {
         exclusive_lock lock(allocation_id_mapping_lock);
         _deallocateCapacity(capacities);
     }
     
     template < typename TunerStatusStructType >
     void FrontendTunerDevice<TunerStatusStructType>::_deallocateCapacity(const CF::Properties & capacities)
-    throw (CORBA::SystemException, CF::Device::InvalidCapacity, CF::Device::InvalidState) {
+     {
         RH_TRACE(_deviceLog,__PRETTY_FUNCTION__);
         for (CORBA::ULong ii = 0; ii < capacities.length(); ++ii) {
             try{

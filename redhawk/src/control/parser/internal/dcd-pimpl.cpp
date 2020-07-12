@@ -110,11 +110,11 @@ namespace dcd
      }
   }
 
-  ::std::auto_ptr<ossie::DeviceManagerConfiguration::DCD> deviceconfiguration_pimpl::
+  ::std::unique_ptr<ossie::DeviceManagerConfiguration::DCD> deviceconfiguration_pimpl::
   post_deviceconfiguration ()
   {
       RH_TRACE(dcd::parserLog, "post deviceconfiguration")
-      return _dcd;
+      return std::move(_dcd);
   }
 
   // devicemanagersoftpkg_pimpl
@@ -726,7 +726,7 @@ const ::ossie::ComponentInstantiation& componentinstantiation_pimpl::
   void structref_pimpl::
   simpleref (const ossie::SimplePropertyRef& simpleref)
   {
-    structref._values.insert(simpleref._id,std::auto_ptr<ossie::ComponentProperty>(simpleref.clone()) );
+    structref._values.insert(simpleref._id, std::auto_ptr<ossie::ComponentProperty>(simpleref.clone()) );
   }
 
   void structref_pimpl::

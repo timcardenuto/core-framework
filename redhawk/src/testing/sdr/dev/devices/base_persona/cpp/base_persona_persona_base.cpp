@@ -72,8 +72,7 @@ void base_persona_persona_base::construct()
 }
 
 // TODO: This was overriden since setting admin state is not accessible via the current IDL
-void base_persona_persona_base::adminState(CF::Device::AdminType adminState) 
-    throw (CORBA::SystemException)
+void base_persona_persona_base::adminState(CF::Device::AdminType adminState)
 {
     // Force admin state to change usage state since usage state is currently protected
     switch (adminState) {
@@ -91,10 +90,7 @@ void base_persona_persona_base::adminState(CF::Device::AdminType adminState)
     base_persona_base::adminState(adminState);
 }
 
-void base_persona_persona_base::releaseObject() 
-    throw (
-        CF::LifeCycle::ReleaseError, 
-        CORBA::SystemException ) 
+void base_persona_persona_base::releaseObject()
 {
     // Terminate all children that were executed
     ProcessMapIter iter;
@@ -188,15 +184,7 @@ CORBA::Boolean base_persona_persona_base::attemptToUnprogramParent()
 CF::ExecutableDevice::ProcessID_Type base_persona_persona_base::execute (
                         const char*                 name, 
                         const CF::Properties&       options, 
-                        const CF::Properties&       parameters )
-    throw ( 
-        CF::ExecutableDevice::ExecuteFail, 
-        CF::InvalidFileName, 
-        CF::ExecutableDevice::InvalidOptions, 
-        CF::ExecutableDevice::InvalidParameters,
-        CF::ExecutableDevice::InvalidFunction, 
-        CF::Device::InvalidState, 
-        CORBA::SystemException ) 
+                        const CF::Properties&       parameters ) 
 {
     // Initialize local variables
     std::string propId;
@@ -228,11 +216,7 @@ CF::ExecutableDevice::ProcessID_Type base_persona_persona_base::execute (
     return (CORBA::Long) _processIdIncrement;
 }
 
-void base_persona_persona_base::terminate(CF::ExecutableDevice::ProcessID_Type processId)
-    throw (
-        CF::Device::InvalidState, 
-        CF::ExecutableDevice::InvalidProcess, 
-        CORBA::SystemException ) 
+void base_persona_persona_base::terminate(CF::ExecutableDevice::ProcessID_Type processId) 
 {
     // Initialize local variables
     ProcessMapIter processIter;

@@ -28,8 +28,7 @@ using namespace ossie::corba;
 
 PREPARE_CF_LOGGING(POACreator);
 
-CORBA::Boolean POACreator::unknown_adapter (PortableServer::POA_ptr parent, const char* name)
-    throw (CORBA::SystemException)
+CORBA::Boolean POACreator::unknown_adapter (PortableServer::POA_ptr parent, const char* name) 
 {
     bool install_adapter_activator = false;
 

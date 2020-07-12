@@ -62,18 +62,12 @@ class ${className} : public ${baseClass}
         virtual Device_impl* getParentDevice() { return _parentDevice; };
 
 //% if component is device
-        virtual void adminState(CF::Device::AdminType adminState) 
-            throw (CORBA::SystemException);
+        virtual void adminState(CF::Device::AdminType adminState);
 //% if component is executabledevice
-        virtual CF::ExecutableDevice::ProcessID_Type execute (const char* name, const CF::Properties& options, const CF::Properties& parameters)
-            throw ( CF::ExecutableDevice::ExecuteFail, CF::InvalidFileName, CF::ExecutableDevice::InvalidOptions, 
-                    CF::ExecutableDevice::InvalidParameters, CF::ExecutableDevice::InvalidFunction, CF::Device::InvalidState, 
-                    CORBA::SystemException);
-        virtual void terminate (CF::ExecutableDevice::ProcessID_Type processId) 
-            throw ( CF::Device::InvalidState, CF::ExecutableDevice::InvalidProcess, CORBA::SystemException);
+        virtual CF::ExecutableDevice::ProcessID_Type execute (const char* name, const CF::Properties& options, const CF::Properties& parameters);
+        virtual void terminate (CF::ExecutableDevice::ProcessID_Type processId);
 //% endif
-        virtual void releaseObject() 
-            throw (CF::LifeCycle::ReleaseError, CORBA::SystemException);
+        virtual void releaseObject();
 
     protected:
 

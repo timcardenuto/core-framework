@@ -1,4 +1,4 @@
-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
+ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie -I /usr/local/share/aclocal
 AUTOMAKE_OPTIONS = subdir-objects
 
 javaSoftpkgJarDep_jar_CLASSPATH = ../../../deps/java_dep1/java/java_dep1.jar:$(OSSIE_CLASSPATH):

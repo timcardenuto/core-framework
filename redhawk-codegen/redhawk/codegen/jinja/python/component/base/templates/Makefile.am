@@ -21,7 +21,7 @@
 #% set componentdir = component.name.replace('.','/')
 #% set sdrbranch = component.sdrpath.split('/')[0]
 # vim: noet: softtabstop=0
-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
+ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie -I /usr/local/share/aclocal
 AUTOMAKE_OPTIONS = subdir-objects
 
 xmldir = $(prefix)/{{component.sdrpath}}/{{componentdir}}/

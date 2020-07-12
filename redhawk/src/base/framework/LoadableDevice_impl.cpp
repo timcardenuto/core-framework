@@ -195,7 +195,7 @@ void LoadableDevice_impl::setLogger(rh_logger::LoggerPtr logptr)
     _loadabledeviceLog = logptr;
 }
 
-void LoadableDevice_impl::update_ld_library_path (CF::FileSystem_ptr fs, const char* fileName, CF::LoadableDevice::LoadType loadKind) throw (CORBA::SystemException, CF::Device::InvalidState, CF::LoadableDevice::InvalidLoadKind, CF::InvalidFileName, CF::LoadableDevice::LoadFail)
+void LoadableDevice_impl::update_ld_library_path (CF::FileSystem_ptr fs, const char* fileName, CF::LoadableDevice::LoadType loadKind) 
 {
 	// Update environment to use newly-loaded library
 	if (loadKind == CF::LoadableDevice::SHARED_LIBRARY)
@@ -204,7 +204,7 @@ void LoadableDevice_impl::update_ld_library_path (CF::FileSystem_ptr fs, const c
 	}
 }
 
-void LoadableDevice_impl::update_octave_path (CF::FileSystem_ptr fs, const char* fileName, CF::LoadableDevice::LoadType loadKind) throw (CORBA::SystemException, CF::Device::InvalidState, CF::LoadableDevice::InvalidLoadKind, CF::InvalidFileName, CF::LoadableDevice::LoadFail)
+void LoadableDevice_impl::update_octave_path (CF::FileSystem_ptr fs, const char* fileName, CF::LoadableDevice::LoadType loadKind) 
 {
 	// Update environment to use newly-loaded library
 	if (loadKind == CF::LoadableDevice::SHARED_LIBRARY) 
@@ -223,10 +223,7 @@ void LoadableDevice_impl::merge_front_environment_path( const char* environment_
 
 void
 LoadableDevice_impl::load (CF::FileSystem_ptr fs, const char* fileName,
-                           CF::LoadableDevice::LoadType loadKind)
-throw (CORBA::SystemException, CF::Device::InvalidState,
-       CF::LoadableDevice::InvalidLoadKind, CF::InvalidFileName,
-       CF::LoadableDevice::LoadFail)
+                           CF::LoadableDevice::LoadType loadKind) 
 {
     boost::recursive_mutex::scoped_lock lock(load_execute_lock);
     try
@@ -261,10 +258,7 @@ throw (CORBA::SystemException, CF::Device::InvalidState,
 ************************************************************************************************ */
 void
 LoadableDevice_impl::do_load (CF::FileSystem_ptr fs, const char* fileName,
-                           CF::LoadableDevice::LoadType loadKind)
-throw (CORBA::SystemException, CF::Device::InvalidState,
-       CF::LoadableDevice::InvalidLoadKind, CF::InvalidFileName,
-       CF::LoadableDevice::LoadFail,  CF::FileException )
+                           CF::LoadableDevice::LoadType loadKind) 
 {
     RH_DEBUG(_loadabledeviceLog, "load " << fileName << " kind:" << loadKind)
 
@@ -809,8 +803,7 @@ LoadableDevice_impl::incrementFile (std::string fileName)
 }
 
 void
-LoadableDevice_impl::unload (const char* fileName)
-throw (CORBA::SystemException, CF::Device::InvalidState, CF::InvalidFileName)
+LoadableDevice_impl::unload (const char* fileName) 
 {
     boost::recursive_mutex::scoped_lock lock(load_execute_lock);
     try
@@ -829,8 +822,7 @@ throw (CORBA::SystemException, CF::Device::InvalidState, CF::InvalidFileName)
     - removes one instance of a file from the device
 ************************************************************************************************ */
 void
-LoadableDevice_impl::do_unload (const char* fileName)
-throw (CORBA::SystemException, CF::Device::InvalidState, CF::InvalidFileName)
+LoadableDevice_impl::do_unload (const char* fileName) 
 {
 
     RH_DEBUG(_loadabledeviceLog, "Unload called for " << fileName)

@@ -22,14 +22,12 @@
 #include "ossie/LifeCycle_impl.h"
 
 void
-LifeCycle_impl::initialize ()
-throw (CORBA::SystemException, CF::LifeCycle::InitializeError)
+LifeCycle_impl::initialize () 
 {
 }
 
 
 void
-LifeCycle_impl::releaseObject ()
-throw (CORBA::SystemException, CF::LifeCycle::ReleaseError)
+LifeCycle_impl::releaseObject () 
 {
 }

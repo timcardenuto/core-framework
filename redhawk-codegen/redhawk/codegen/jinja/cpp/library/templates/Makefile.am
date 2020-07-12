@@ -19,7 +19,7 @@
 #}
 #% set outputdir = generator.getOutputDir()
 #% set target = automake.canonicalName(component.ltlibname)
-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
+ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie -I /usr/local/share/aclocal
 AUTOMAKE_OPTIONS = subdir-objects
 
 lib_LTLIBRARIES = {{component.ltlibname}}

@@ -37,17 +37,17 @@ const ComponentInstantiation* SoftwareAssembly::HostCollocation::getInstantiatio
 }
 
 SoftwareAssembly::SoftwareAssembly() :
-    _sad(0)
+    _sad(nullptr)
 {
 }
 
-SoftwareAssembly::SoftwareAssembly(std::istream& input) throw (ossie::parser_error) :
-    _sad(0)
+SoftwareAssembly::SoftwareAssembly(std::istream& input)  :
+    _sad(nullptr)
 {
     this->load(input);
 }
 
-void SoftwareAssembly::load(std::istream& input) throw (ossie::parser_error) 
+void SoftwareAssembly::load(std::istream& input)  
 {
     _sad = ossie::internalparser::parseSAD(input);
 

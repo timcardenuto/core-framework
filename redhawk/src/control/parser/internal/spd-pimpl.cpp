@@ -111,11 +111,11 @@ version (const ::std::string& version)
     _spd->version = version;
 }
 
-std::auto_ptr<ossie::SPD> softPkg_pimpl::
+std::unique_ptr<ossie::SPD> softPkg_pimpl::
 post_softPkg ()
 {
     RH_TRACE(spd::parserLog, "softpkg post")
-    return _spd;
+    return std::move(_spd);
 }
 
 // localFile_pimpl

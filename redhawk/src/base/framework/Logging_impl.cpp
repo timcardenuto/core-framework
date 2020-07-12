@@ -300,8 +300,7 @@ void Logging_impl::setLogConfigURL( const char *in_url ) {
 }
 
 
-void Logging_impl::setLogLevel( const char *logger_id, const CF::LogLevel newLevel ) 
-  throw (CF::UnknownIdentifier)
+void Logging_impl::setLogLevel( const char *logger_id, const CF::LogLevel newLevel )  
 {
   if (not haveLoggerHierarchy(logger_id))
     throw (CF::UnknownIdentifier());
@@ -340,8 +339,7 @@ bool Logging_impl::haveLoggerHierarchy(const std::string &name)
     return this->_baseLog->isLoggerInHierarchy(name);
 }
 
-CF::LogLevel Logging_impl::getLogLevel( const char *logger_id ) 
-  throw (CF::UnknownIdentifier)
+CF::LogLevel Logging_impl::getLogLevel( const char *logger_id )
 {
     if (not haveLoggerHierarchy(logger_id))
         throw (CF::UnknownIdentifier());

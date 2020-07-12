@@ -87,14 +87,12 @@ void File_impl::setIOR( const std::string &ior)
   fileIOR=ior;
 }
 
-char* File_impl::fileName ()
-    throw (CORBA::SystemException)
+char* File_impl::fileName () 
 {
     return CORBA::string_dup(fName.c_str());
 }
 
-void File_impl::read (CF::OctetSequence_out data, CORBA::ULong length)
-    throw (CORBA::SystemException, CF::File::IOException)
+void File_impl::read (CF::OctetSequence_out data, CORBA::ULong length) 
 {
     boost::mutex::scoped_lock lock(interfaceAccess);
 
@@ -129,8 +127,7 @@ void File_impl::read (CF::OctetSequence_out data, CORBA::ULong length)
 }
 
 
-void File_impl::write (const CF::OctetSequence& data)
-    throw (CORBA::SystemException, CF::File::IOException)
+void File_impl::write (const CF::OctetSequence& data) 
 {
     boost::mutex::scoped_lock lock(interfaceAccess);
 
@@ -147,8 +144,7 @@ void File_impl::write (const CF::OctetSequence& data)
 }
 
 
-CORBA::ULong File_impl::sizeOf ()
-    throw (CORBA::SystemException, CF::FileException)
+CORBA::ULong File_impl::sizeOf () 
 {
     boost::mutex::scoped_lock lock(interfaceAccess);
 
@@ -157,8 +153,7 @@ CORBA::ULong File_impl::sizeOf ()
     return size;
 }
 
-void File_impl::close ()
-    throw (CORBA::SystemException, CF::FileException)
+void File_impl::close () 
 {
     boost::mutex::scoped_lock lock(interfaceAccess);
 
@@ -201,8 +196,7 @@ void File_impl::close ()
 }
 
 
-CORBA::ULong File_impl::filePointer ()
-    throw (CORBA::SystemException)
+CORBA::ULong File_impl::filePointer () 
 {
     boost::mutex::scoped_lock lock(interfaceAccess);
 
@@ -211,8 +205,7 @@ CORBA::ULong File_impl::filePointer ()
     return pos;
 };
 
-void File_impl::setFilePointer (CORBA::ULong _filePointer)
-    throw (CORBA::SystemException, CF::File::InvalidFilePointer, CF::FileException)
+void File_impl::setFilePointer (CORBA::ULong _filePointer) 
 {
     boost::mutex::scoped_lock lock(interfaceAccess);
 
@@ -226,8 +219,7 @@ void File_impl::setFilePointer (CORBA::ULong _filePointer)
 
 }
 
-CORBA::ULong File_impl::getSize ()
-    throw (CF::FileException)
+CORBA::ULong File_impl::getSize () 
 {
     struct stat filestat;
     if (fstat(fd, &filestat)) {

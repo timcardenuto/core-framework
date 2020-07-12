@@ -37,7 +37,7 @@ else
 fi
 
 if [ -n ${OSSIE_AC_INCLUDE} ]; then
-        aclocal -I ${OSSIE_AC_INCLUDE}
+        aclocal -I ${OSSIE_AC_INCLUDE} -I /usr/local/share/aclocal
 else
         aclocal
 fi

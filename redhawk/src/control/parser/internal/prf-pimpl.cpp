@@ -376,11 +376,11 @@ structsequence (ossie::StructSequenceProperty* structsequence)
   _prf->addProperty(structsequence);
 }
 
-std::auto_ptr<ossie::PRF> properties_pimpl::
+std::unique_ptr<ossie::PRF> properties_pimpl::
 post_properties ()
 {
     RH_TRACE(prf::parserLog, "properties post")
-    return _prf;
+    return std::move(_prf);
 }
 
 // PropertyValueType_pimpl
@@ -472,7 +472,7 @@ void simple_pimpl::
 value (const ::std::string& value)
 {
     RH_TRACE(prf::parserLog, "simple_pimpl value " << value)
-    _value = std::auto_ptr<std::string>(new std::string(value));
+    _value = std::unique_ptr<std::string>(new std::string(value));
 }
 
 void simple_pimpl::

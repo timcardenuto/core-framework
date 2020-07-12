@@ -111,8 +111,7 @@ void ${className}::construct()
 }
 
 // TODO: This was overriden since setting admin state is not accessible via the current IDL
-void ${className}::adminState(CF::Device::AdminType adminState) 
-    throw (CORBA::SystemException)
+void ${className}::adminState(CF::Device::AdminType adminState)     
 {
     // Force admin state to change usage state since usage state is currently protected
     switch (adminState) {
@@ -130,10 +129,7 @@ void ${className}::adminState(CF::Device::AdminType adminState)
     ${baseClass}::adminState(adminState);
 }
 
-void ${className}::releaseObject() 
-    throw (
-        CF::LifeCycle::ReleaseError, 
-        CORBA::SystemException ) 
+void ${className}::releaseObject()
 {
 /*{% if component is executabledevice %}*/
     // Terminate all children that were executed
@@ -229,15 +225,7 @@ CORBA::Boolean ${className}::attemptToUnprogramParent()
 CF::ExecutableDevice::ProcessID_Type ${className}::execute (
                         const char*                 name, 
                         const CF::Properties&       options, 
-                        const CF::Properties&       parameters )
-    throw ( 
-        CF::ExecutableDevice::ExecuteFail, 
-        CF::InvalidFileName, 
-        CF::ExecutableDevice::InvalidOptions, 
-        CF::ExecutableDevice::InvalidParameters,
-        CF::ExecutableDevice::InvalidFunction, 
-        CF::Device::InvalidState, 
-        CORBA::SystemException ) 
+                        const CF::Properties&       parameters ) 
 {
     // Initialize local variables
     std::string propId;
@@ -269,11 +257,7 @@ CF::ExecutableDevice::ProcessID_Type ${className}::execute (
     return (CORBA::Long) _processIdIncrement;
 }
 
-void ${className}::terminate(CF::ExecutableDevice::ProcessID_Type processId)
-    throw (
-        CF::Device::InvalidState, 
-        CF::ExecutableDevice::InvalidProcess, 
-        CORBA::SystemException ) 
+void ${className}::terminate(CF::ExecutableDevice::ProcessID_Type processId) 
 {
     // Initialize local variables
     ProcessMapIter processIter;

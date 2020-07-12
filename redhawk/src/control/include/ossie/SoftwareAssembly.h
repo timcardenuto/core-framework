@@ -172,9 +172,9 @@ namespace ossie {
        
         SoftwareAssembly();
 
-        SoftwareAssembly(std::istream& input) throw (ossie::parser_error);
+        SoftwareAssembly(std::istream& input);
 
-        void load(std::istream& input) throw (ossie::parser_error);
+        void load(std::istream& input);
 
         const std::string& getID() const;
 
@@ -211,7 +211,7 @@ namespace ossie {
         void validateExternalPorts(std::vector<Port>& ports);
         void validateExternalProperties(std::vector<Property>& properties);
 
-        std::auto_ptr<SAD> _sad;
+        std::unique_ptr<SAD> _sad;
     };
 }
 #endif

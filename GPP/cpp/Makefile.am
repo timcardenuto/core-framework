@@ -24,7 +24,7 @@ dist_bin_SCRIPTS = gpp_setup
 
 xmldir = $(prefix)/dev/devices/GPP/
 dist_xml_DATA = ../GPP.scd.xml ../GPP.prf.xml ../GPP.spd.xml
-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
+ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie -I /usr/local/share/aclocal
 
 screendir = $(bindir)
 screen_DATA = $(srcdir)/gpp.screenrc

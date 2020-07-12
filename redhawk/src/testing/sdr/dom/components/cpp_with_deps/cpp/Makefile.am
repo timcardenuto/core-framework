@@ -28,7 +28,7 @@ noinst_PROGRAMS = cpp_with_deps
 
 ##xmldir = $(prefix)/dom/components/cpp_with_deps/
 ##dist_xml_DATA = ../cpp_with_deps.scd.xml ../cpp_with_deps.prf.xml ../cpp_with_deps.spd.xml
-ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie
+ACLOCAL_AMFLAGS = -I m4 -I${OSSIEHOME}/share/aclocal/ossie -I /usr/local/share/aclocal
 AUTOMAKE_OPTIONS = subdir-objects
 
 

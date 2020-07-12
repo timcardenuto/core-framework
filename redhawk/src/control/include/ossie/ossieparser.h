@@ -48,6 +48,11 @@ namespace ossie {
 
     typedef boost::ptr_map< std::string, Property >            PropertyMapList;
 
+    // TODO replace boost::ptr_map with normal map using unique_ptr... this isn't a drop in though since it looks like there's alot of handling code for the boost stuff scattered around...
+    // Once this is done, the auto_ptr can be replaced with unique_ptr in the prf/dcd/spd/sad-impl.cpp files
+    //typedef std::map< std::string, std::unique_ptr<ComponentProperty> >   ComponentPropertyMap;
+    //typedef std::map< std::string, std::unique_ptr<Property> >            PropertyMapList;
+
 
     template<class T>
     class optional_value
@@ -56,14 +61,14 @@ namespace ossie {
             template< typename charT, typename Traits, typename U>
             friend std::basic_ostream<charT, Traits>& operator<<(std::basic_ostream<charT, Traits> &out, const optional_value<U> ov);
 
-            optional_value() : _p(0) {
+            optional_value() : _p(nullptr) {
             }
 
-            optional_value(const T& v) : _p(0) {
+            optional_value(const T& v) : _p(nullptr) {
                 _p.reset(new T(v));
             }
 
-            optional_value(const T* p) : _p(0) {
+            optional_value(const T* p) : _p(nullptr) {
                 if (p != 0) {
                     _p.reset(new T(*p));
                 }
@@ -110,7 +115,7 @@ namespace ossie {
             }
 
         private:
-            std::auto_ptr<T> _p;
+            std::unique_ptr<T> _p;
 
     };
 
